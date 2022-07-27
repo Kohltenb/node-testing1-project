@@ -143,10 +143,10 @@ class Car {
     if (distance <= milesCanDrive) {
       this.odometer = this.odometer + distance
       this.tank = this.tank - (distance / this.mpg)
-    return this.odometer
+    } else {
+      this.odometer = this.odometer + milesCanDrive
+      this.tanks = 0
     }
-    this.odometer = this.odometer + milesCanDrive
-    this.tanks = 0
     return this.odometer
   }
 
@@ -163,6 +163,12 @@ class Car {
    */
   refuel(gallons) {
     // ✨ implement
+    if (gallons <= this.tankSize - this.tank) {
+      this.tank = this.tank + gallons
+    } else {
+      this.tank = this.tankSize
+    }
+    return this.tank * this.mpg
   }
 }
 
